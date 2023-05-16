@@ -1,0 +1,18 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %} Add New Listing {% endblock %}
+
+{% block body %}
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+            <h3>{{ field.label_tag }}</h3>
+            <p>
+                {{ field }}
+            </p>
+        {% endfor %}
+        <input type="submit" value="save">
+    </form>
+
+{% endblock %}

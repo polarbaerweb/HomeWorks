@@ -1,0 +1,86 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %} Detail {% endblock %}
+
+{% block body %}
+        <h1>
+            {{ content.title }}
+        </h1>
+
+        <ul>
+            <li>
+                {{ content.title }}
+            </li>
+
+            <li>
+                {{ content.description }}
+            </li>
+            <li>
+                <strong>
+                    The highest bid ${{ content.initialBids }} by
+                        {% if bids.user %}
+                            {{ bids.user }}
+                        {% else %}
+                            {{ bids }}
+                        {% endif %}
+                </strong>
+            </li>
+
+
+            <li>
+                <strong>
+                    {{ content.category }}
+                </strong>
+            </li>
+
+            <li>
+                <img src="{{ content.image.url }}" width="150px">
+            </li>
+        </ul>
+
+        <h2>
+            {% if comments %}
+            All comment related to this auction
+            {% else %}
+            No comments
+            {% endif %}
+        </h2>
+
+        <ul>
+            {% for comment in comments %}
+                <h3>
+                    {{ comment.email }}
+                </h3>
+                <li>
+                    {{ comment.comment }}
+                </li>
+            {% endfor %}
+        </ul>
+
+        <br><br><br><br>
+        <hr>
+        <br><br><br><br>
+
+        <h2>
+            Make Bids
+        </h2>
+
+        <form action="{% url 'make-bid' content.title%}" method="post">
+            {% csrf_token %}
+            <input type="number" name="bidAmount">
+            <input type="submit" value="make bid">
+        </form>
+
+        <br>
+        <br>
+        <br>
+
+        <h2>
+            Leave Comment
+        </h2>
+        <form action="{% url 'add-comment' content.title%}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="leave">
+        </form>
+{% endblock %}

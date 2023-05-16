@@ -1,0 +1,49 @@
+{% extends 'auctions/layout.html' %}
+
+{% block title %} Listings Auctions {% endblock %}
+
+{% block body %}
+
+  <table>
+    {% for listing in listings %}
+        <tr>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Url</th>
+        </tr>
+        <tr>
+          <td>{{ listing.title|title }}</td>
+            {% if listing.image %}
+            <td><a href="{{ listing.image.url }}"><img src="{{ listing.image.url }}" width="150px"></a></td>
+            {% else %}
+            <td><h5>Not found</h5></td>
+            {% endif %}
+          <td>{{ listing.description }}</td>
+          <td>{{ listing.initialBids }}</td>
+          <td> {{ listing.category }} </td>
+          <td><a href="{% url 'detail' listing.title %}">{{ listing.title }}</a></td>
+          {% if request.user.is_authenticated %}
+            <td>
+              <form method="post" action="{% url 'add_to_watchlist' item_id=listing.id %}">
+                {% csrf_token %}
+                <button type="submit">Add to Watchlist</button>
+              </form>
+            </td>
+          {% endif %}
+          <td>
+            <a href="{% url 'close-auction' listing.id %}">
+              Close {{ listing.title }}
+            </a>
+          </td>
+        </tr>
+      {% empty %}
+        <h1>
+          Nothing to show
+        </h1>
+    {% endfor %}
+  </table>
+
+{% endblock %}

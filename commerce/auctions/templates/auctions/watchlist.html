@@ -1,0 +1,20 @@
+{% extends 'auctions/layout.html' %}
+
+
+{% block title %} Watchlist for {{ request.user }} {% endblock %}
+
+{% block body %}
+    
+    
+    {% for listing in listings %}
+        <form action="{% url 'remove_from_watchList' listing.id%}">
+            <h1><a href="{% url 'detail' listing %}">{{ listing.title }}</a></h1>
+            <input type="submit" value="remove {{ listing }}">
+            {% empty %}
+            <h1>Not found</h1>
+            <a href="{% url 'index' %}">Back to Home</a>
+
+        </form> 
+    {% endfor %}
+
+{% endblock %}
