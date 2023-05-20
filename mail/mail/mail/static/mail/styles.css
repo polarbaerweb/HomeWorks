@@ -26,6 +26,7 @@ textarea {
 .content {
 	padding: 10px;
 	height: 70px;
+	overflow-y: hidden;
 	width: 100%;
 	display: flex;
 	align-items: center;
@@ -34,6 +35,7 @@ textarea {
 	font-family: "Roboto", sans-serif;
 	background-color: #fff;
 	text-align: left;
+	cursor: pointer;
 }
 
 .content.__readed {

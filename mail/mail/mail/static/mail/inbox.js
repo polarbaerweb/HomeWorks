@@ -70,7 +70,6 @@ function load_mailbox(mailbox, response=null) {
   else if(mailbox == "email"){
 	getEmailById(response)
   }
-  
 }
 
 function getAllSent(url_endpoint){
