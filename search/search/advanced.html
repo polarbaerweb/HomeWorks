@@ -4,17 +4,23 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title>Advanced</title>
 </head>
 <body>
-	<form action="https://www.google.com/search" method="get">
-		<input type="text" placeholder="all with these words" name="as_q">
-		<input type="text" placeholder="with this exact word" name="as_epq">
-		<input type="text" placeholder="any of this words" name="as_oq">
-		<input type="text" placeholder="none of this words" name="as_eq">
-		<input type="hidden" value="images" name="safe">
-		<input type="submit" value="Advanced Search">
+	<form action="https://www.google.com/search" method="get" class="form">
+		<div class="form__container multiple__columns">
+			<input type="text" placeholder="all with these words" name="as_q" class="input__field multiple">
+			<input type="text" placeholder="with this exact word" name="as_epq" class="input__field multiple">
+			<input type="text" placeholder="any of this words" name="as_oq" class="input__field multiple">
+			<input type="text" placeholder="none of this words" name="as_eq" class="input__field multiple">
+			<input type="hidden" value="images" name="safe">
+			<input type="submit" value="Advanced Search" class="input__field lower multiple__btn">
+		</div>
 	</form>
-	<a href="index.html" class="link">Back</a>
+	<div class="btn__container">
+		<a href="index.html" class="link">Back</a>
+	</div>
 </body>
 </html>

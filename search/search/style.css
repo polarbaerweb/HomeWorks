@@ -119,3 +119,23 @@ form {
 	width: 85%;
 	padding: 0 5px 0 5px;
 }
+
+.form {
+	height: 200px;
+	margin-top: 200px;
+}
+
+.multiple__columns {
+	flex-direction: column;
+	gap: 10px;
+	height: 100%;
+}
+
+.multiple {
+	height: 25%;
+}
+
+.input__field.multiple__btn {
+	height: 50px;
+	border-radius: 5px;
+}
