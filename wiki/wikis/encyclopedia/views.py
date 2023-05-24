@@ -28,8 +28,7 @@ def getContent(request, contentName):
     if content is None:
         raise Http404
 
-    return render(request, DETAIL_PAGE, {"entries": content,
-                                         "title": contentName, })
+    return render(request, DETAIL_PAGE, {"entries": content, "title": contentName, })
 
 
 def search(request):
@@ -56,8 +55,7 @@ def search(request):
     if readeContent is None:
         whichPage = MAIN_PAGE
 
-    return render(request, whichPage, {"entries": readeContent or get_all_matched_contents(),
-                                       "bodyTitle": BODY_SEARCH_PAGE_TITLE})
+    return render(request, whichPage, {"entries": readeContent or get_all_matched_contents(), "bodyTitle": BODY_SEARCH_PAGE_TITLE})
 
 
 def create_page(request):
@@ -68,14 +66,12 @@ def create_page(request):
         allArticles = util.list_entries()
 
         if title in allArticles:
-            return render(request, MAIN_PAGE, {"entries": allArticles,
-                                               "bodyTitle": CREATE_MATCHED_ERROR_MESSAGE})
+            return render(request, MAIN_PAGE, {"entries": allArticles, "bodyTitle": CREATE_MATCHED_ERROR_MESSAGE})
 
         util.save_entry(title, article)
         return redirect(f"../../wiki/{title}")
 
-    return render(request, ADD_ARTICLE_PAGE, {"form": AddNewArticle,
-                                              "typeUrl": "create-page"})
+    return render(request, ADD_ARTICLE_PAGE, {"form": AddNewArticle, "typeUrl": "create-page"})
 
 
 def edit_article(request, contentName: str = None):
@@ -89,5 +85,4 @@ def edit_article(request, contentName: str = None):
 
     content = util.get_entry(contentName)
 
-    return render(request, ADD_ARTICLE_PAGE, {"form": AddNewArticle(title=contentName, article=content),
-                                              "typeUrl": "edit-page"})
+    return render(request, ADD_ARTICLE_PAGE, {"form": AddNewArticle(title=contentName, article=content), "typeUrl": "edit-page"})

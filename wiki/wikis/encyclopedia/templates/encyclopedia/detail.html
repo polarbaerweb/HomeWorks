@@ -11,6 +11,6 @@
 {% block body %}
   {{ entries|convert_markdown_file|safe}}
   <p>
-    <a href="../wiki/action/edit-page/{{ title }}">Edit {{ title }}</a>
+    <a href="{% url 'edit-page' title  %}">Edit {{ title }}</a>
   </p>
 {% endblock %}

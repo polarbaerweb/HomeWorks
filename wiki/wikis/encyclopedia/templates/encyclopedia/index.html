@@ -19,7 +19,7 @@
     <ul>
         {% for entry in entries %}
             <li>
-                <a href="../../../wiki/{{ entry }}">{{ entry }}</a> <a href="../../../wiki/action/edit-page/{{ entry }}">Edit {{ entry }}</a>
+                <a href="{% url 'detail' entry %}">{{ entry|capfirst }}</a> <a href="{% url 'edit-page' entry %}">Edit {{ entry }}</a>
             </li>
         {% endfor %}
     </ul>
