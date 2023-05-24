@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import Http404
 
 from . import util
@@ -22,7 +23,7 @@ def index(request):
     })
 
 
-def getContent(request, contentName):
+def getContent(request, contentName: str = None):
     content = util.get_entry(contentName)
 
     if content is None:
@@ -69,7 +70,7 @@ def create_page(request):
             return render(request, MAIN_PAGE, {"entries": allArticles, "bodyTitle": CREATE_MATCHED_ERROR_MESSAGE})
 
         util.save_entry(title, article)
-        return redirect(f"../../wiki/{title}")
+        return redirect(reverse("detail", kwargs={"contentName": title}))
 
     return render(request, ADD_ARTICLE_PAGE, {"form": AddNewArticle, "typeUrl": "create-page"})
 
@@ -81,7 +82,7 @@ def edit_article(request, contentName: str = None):
 
         util.save_entry(title, article)
 
-        return redirect(f"../../../wiki/{title}")
+        return redirect(reverse("detail", kwargs={"contentName": title}))
 
     content = util.get_entry(contentName)
 
