@@ -45,6 +45,7 @@ def search(request):
         """
             to figure out does one of the letter in read variable contains in content  
         """
+        
         for content in allContents:
             for letter in read.lower():
                 if letter in content.lower().strip():

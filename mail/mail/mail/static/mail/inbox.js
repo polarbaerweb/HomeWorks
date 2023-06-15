@@ -64,10 +64,14 @@ function load_mailbox(mailbox, response=null) {
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
 
+  if(mailbox == "inbox"){
+	getAllSent(mailbox)
+  }
+  
   if(mailbox == 'sent'){
 	getAllSent(mailbox)
   }
-  else if(mailbox == "email"){
+  if(mailbox == "email"){
 	getEmailById(response)
   }
 }
@@ -159,7 +163,6 @@ function getEmailHandler(block, email_id){
 
 
 function getEmailById(response){
-
 	const from_container = create(response, "sender")
 	const to_container = create(response, "recipients")
 	const time_stamp = create(response, "timestamp")
